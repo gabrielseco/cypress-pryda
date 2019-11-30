@@ -13,13 +13,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@testing-library/cypress": "^5.0.2",
     "cypress": "^3.7.0",
     "dotenv": "^8.2.0",
     "twitter": "^1.7.1"
   },
   "devDependencies": {
     "@rogal/front-linter": "^2.4.0",
-    "@testing-library/cypress": "^5.0.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0"
   },
