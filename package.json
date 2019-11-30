@@ -13,8 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@testing-library/cypress": "^5.0.2",
-    "cypress": "^3.7.0",
+    "axios": "^0.19.0",
     "dotenv": "^8.2.0",
     "twitter": "^1.7.1"
   },
