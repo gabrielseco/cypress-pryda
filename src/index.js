@@ -4,6 +4,13 @@ const Twitter = require('./twitter');
 
 require('dotenv').config();
 
+console.log({
+  consumerKey: process.env.CONSUMER_KEY,
+  consumerSecret: process.env.CONSUMER_SECRET,
+  accessToken: process.env.ACCESS_TOKEN,
+  accessTokenSecret: process.env.ACCESS_TOKEN_SECRET
+})
+
 const twitter = new Twitter({
   consumerKey: process.env.CONSUMER_KEY,
   consumerSecret: process.env.CONSUMER_SECRET,
