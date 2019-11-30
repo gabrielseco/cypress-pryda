@@ -44,6 +44,10 @@ function executingFunction({ minutes }) {
     });
 }
 
+app.get('*', (req, res) => {
+  res.send({ message: 'hello world' });
+});
+
 app.listen(port, () => {
   console.log('Listening in port: ', port);
   const minutes = 10;
