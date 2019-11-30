@@ -1,9 +1,13 @@
 /* eslint-disable no-console */
-const cypress = require('cypress');
+const axios = require('axios');
+const express = require('express');
 
 const { sleep, getDateRightNow } = require('./utils');
 const Twitter = require('./twitter');
 require('dotenv').config();
+
+const app = express();
+const port = process.env.PORT || 8080;
 
 const twitter = new Twitter({
   consumerKey: process.env.CONSUMER_KEY,
@@ -14,12 +18,19 @@ const twitter = new Twitter({
 
 function executingFunction({ minutes }) {
   const ms = minutes * 60 * 1000;
-  cypress
-    .run({
-      spec: 'cypress/integration/pryda.spec.js'
-    })
-    .then(results => {
-      if (results.totalFailed > 0) {
+  axios
+    .get('https://kaboodle.co.uk/event/eric-prydz')
+    .then(response => {
+      const matches = response.data.match(/Sold Out/gi).length;
+
+      if (matches === 3) {
+        console.log('It seems there are not tickets left');
+        console.log(`date executed: `, getDateRightNow());
+        sleep(ms).then(() => executingFunction({ minutes }));
+      }
+
+      if (matches !== 3) {
+        console.log('Probably tickets');
         twitter
           .sendTweet(
             `Hey @GGarciaSeco10,\nI have news for you it seems like there are tickets to see Eric Prydz in Printworks.\nCheck this out ➡️ https://kaboodle.co.uk/event/eric-prydz`
@@ -27,16 +38,14 @@ function executingFunction({ minutes }) {
           .then(() => console.log('Tweet sent'))
           .catch(err => console.error('Error sending tweet of error OMG', err));
       }
-
-      if (results.totalPassed === results.totalTests) {
-        console.log(`date executed: `, getDateRightNow());
-        sleep(ms).then(() => executingFunction({ minutes }));
-      }
     })
     .catch(err => {
-      console.log('err cypress run', err);
+      console.log('err axios get', err);
     });
 }
 
-const minutes = 10;
-executingFunction({ minutes });
+app.listen(port, () => {
+  console.log('Listening in port: ', port);
+  const minutes = 10;
+  executingFunction({ minutes });
+});
