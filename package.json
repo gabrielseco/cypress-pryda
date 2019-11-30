@@ -1,0 +1,37 @@
+{
+  "name": "cypress-pryda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:js": "front-linter js",
+    "cron": "node src/index.js",
+    "test": "cypress run",
+    "test:dev": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^3.7.0",
+    "dotenv": "^8.2.0",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "@rogal/front-linter": "^2.4.0",
+    "@testing-library/cypress": "^5.0.2",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@rogal/front-linter/javascript-react-eslint.js"
+    ]
+  },
+  "lint-staged": {
+    "{src,test}/**/*.js": [
+      "npm run lint:js -- --fix --staged",
+      "git add"
+    ]
+  }
+}
