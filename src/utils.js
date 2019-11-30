@@ -1,18 +1,3 @@
-const { exec } = require('child_process');
-
-function execCommand(command) {
-  return new Promise((resolve, reject) => {
-    exec(command, (err, stdout, stderr) => {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve({ stdout, stderr });
-    });
-  });
-}
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -44,6 +29,5 @@ function getDateRightNow() {
 
 module.exports = {
   sleep,
-  execCommand,
   getDateRightNow
 };
