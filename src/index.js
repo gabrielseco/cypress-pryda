@@ -1,13 +1,9 @@
 /* eslint-disable no-console */
 const cypress = require('cypress');
-const express = require('express');
 
-const { execCommand, sleep, getDateRightNow } = require('./utils');
+const { sleep, getDateRightNow } = require('./utils');
 const Twitter = require('./twitter');
 require('dotenv').config();
-
-const app = express();
-const port = Number(process.env.PORT || 8080);
 
 const twitter = new Twitter({
   consumerKey: process.env.CONSUMER_KEY,
@@ -42,11 +38,5 @@ function executingFunction({ minutes }) {
     });
 }
 
-app.listen(port, function() {
-  console.log('Listening on port ' + port);
-  execCommand('cypress install').then(({ stdout }) => {
-    console.log('stdout', stdout);
-    const minutes = 1;
-    executingFunction({ minutes });
-  });
-});
+const minutes = 10;
+executingFunction({ minutes });
