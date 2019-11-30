@@ -1,1 +1,1 @@
-worker: npm run cron
+web: npm run cron

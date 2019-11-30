@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const cypress = require('cypress')
-const { sleep, getDateRightNow } = require('./utils');
+const { execCommand, sleep, getDateRightNow } = require('./utils');
 const Twitter = require('./twitter');
 
 require('dotenv').config();
@@ -35,5 +35,18 @@ function executingFunction({ minutes }) {
   })
 }
 
-const minutes = 10;
-executingFunction({ minutes });
+console.log("Hey heroku let's do something fun")
+
+sleep(1000).then(() => {
+  execCommand('cypress install')
+    .then(({ stdout }) => {
+      console.log(stdout)
+      const minutes = 10;
+      executingFunction({ minutes });
+    })
+    .catch(err => {
+      console.log("Error installing")
+    })
+})
+
+
