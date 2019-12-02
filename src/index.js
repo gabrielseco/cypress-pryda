@@ -18,7 +18,9 @@ const twitter = new Twitter({
 
 async function crawl(url) {
   try {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox']
+    });
     const page = await browser.newPage();
     await page.goto(url);
     await page.waitForSelector('.ticket-selector', { timeout: 3000 });
