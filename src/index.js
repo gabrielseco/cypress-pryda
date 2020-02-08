@@ -75,6 +75,6 @@ app.post('*', (req, res) => {
 
 app.listen(port, () => {
   console.log('Listening in port: ', port);
-  const minutes = 10;
+  const minutes = 5;
   executingFunction({ minutes });
 });
