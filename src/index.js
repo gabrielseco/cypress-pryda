@@ -54,7 +54,7 @@ function executingFunction({ minutes }) {
         console.log('Probably tickets');
         twitter
           .sendTweet(
-            `Hey @GGarciaSeco10,\nI have news for you it seems like there are tickets to see Eric Prydz in Printworks.\nCheck this out ➡️ https://bookings.kaboodle.co.uk/book/9924/ticket`
+            `Hey @GGarciaSeco10,\nI have news for you it seems like there are tickets to see Eric Prydz in Printworks.\nCheck this out ➡️ https://bookings.kaboodle.co.uk/landing?client_id=68&agent_id=408740&package_id=9924&adults=1&children=0&infants=0&currency_id=98`
           )
           .then(() => console.log('Tweet sent'))
           .catch(err => console.error('Error sending tweet of error OMG', err));
